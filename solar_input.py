@@ -1,6 +1,8 @@
 # coding: utf-8
 # license: GPLv3
 
+from numpy import format_float_scientific, float32
+from decimal import Decimal
 from solar_objects import Star, Planet
 from solar_vis import DrawableObject
 
@@ -54,7 +56,7 @@ def parse_star_parameters(line, star):
     **star** — объект звезды.
     """
     line = line.split()
-    star.r = line[1]
+    star.R = line[1]
     star.color = line[2]
     star.m = line[3]
     star.x = line[4]
@@ -84,7 +86,7 @@ def parse_planet_parameters(line, planet):
     """
 
     line = line.split()
-    planet.r = float(line[1])
+    planet.R = float(line[1])
     planet.color = line[2]
     planet.m = float(line[3])
     planet.x = float(line[4])
@@ -109,10 +111,16 @@ def write_space_objects_data_to_file(output_filename, space_objects):
     **space_objects** — список объектов планет и звёзд
     """
     with open(output_filename, 'w') as out_file:
-        for line in out_file.readlines():
-            for obj in space_objects:
-                out_file.write(str(obj.type), obj.r, obj.color, obj.m, obj.x, obj.y, obj.y, obj.Vx, obj.Vy, '\n', sep=' ')
-
+        for obj in space_objects:
+            print(str(obj.type),
+             format_float_scientific(float32(obj.R), unique=True),
+             obj.color,
+             format_float_scientific(float32(obj.m), unique=True),
+             format_float_scientific(float32(obj.x), unique=True),
+             format_float_scientific(float32(obj.y), unique=True),
+             format_float_scientific(float32(obj.Vx), unique=True),
+             format_float_scientific(float32(obj.Vy), unique=True),
+             '\n', file=out_file)
 
 
 if __name__ == "__main__":
