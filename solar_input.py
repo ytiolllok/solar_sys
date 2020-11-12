@@ -2,7 +2,6 @@
 # license: GPLv3
 
 from numpy import format_float_scientific, float32
-from decimal import Decimal
 from solar_objects import Star, Planet
 from solar_vis import DrawableObject
 
