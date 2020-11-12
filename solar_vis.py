@@ -85,4 +85,4 @@ class DrawableObject:
         self.obj = obj
 
     def draw(self, surface):
-        pg.circle(surface, obj.color, (scale_x(obj.x), scale_y(obj.y)), obj.R)
+        pg.circle(surface, self.color, (scale_x(self.x), scale_y(self.y)), self.R)
