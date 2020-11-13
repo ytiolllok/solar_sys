@@ -22,10 +22,10 @@ def calculate_force(body, space_objects):
             continue  # тело не действует гравитационной силой на само себя!
         r = ((body.x - obj.x)**2 + (body.y - obj.y)**2)**0.5
         if max(r, body.R) == body.R:
-            pass  # FIXME: обработка аномалий при прохождении одного тела сквозь другое
+            pass
         F_abs = (gravitational_constant * body.m * obj.m / (r**2))
-        body.Fx += F_abs * np.linalg.dot(np.array(body.x - obj.x, body.y - obj.x), np.array(1, 0))
-        body.Fy += F_abs * np.linalg.dot(np.array(body.x - obj.x, body.y - obj.x), np.array(0, -1))
+        body.Fx += F_abs * np.dot((body.x - obj.x, body.y - obj.x), (-1, 0))
+        body.Fy += F_abs * np.dot((body.x - obj.x, body.y - obj.x), (0, -1))
 
 
 def move_space_object(body, dt):

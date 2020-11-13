@@ -4,6 +4,8 @@
 from numpy import format_float_scientific, float32
 from solar_objects import Star, Planet
 from solar_vis import DrawableObject
+from solar_vis import colordict
+
 
 def read_space_objects_data_from_file(input_filename):
     """Cчитывает данные о космических объектах из файла, создаёт сами объекты
@@ -55,14 +57,13 @@ def parse_star_parameters(line, star):
     **star** — объект звезды.
     """
     line = line.split()
-    star.R = line[1]
-    star.color = line[2]
-    star.m = line[3]
-    star.x = line[4]
-    star.y = line[5]
-    star.Vx = line[6]
-    star.Vy = line[7]
-
+    star.R = float(line[1])
+    star.color = colordict.get(line[2])
+    star.m = float(line[3])
+    star.x = float(line[4])
+    star.y = float(line[5])
+    star.Vx = float(line[6])
+    star.Vy = float(line[7])
 
 
 def parse_planet_parameters(line, planet):
@@ -86,7 +87,7 @@ def parse_planet_parameters(line, planet):
 
     line = line.split()
     planet.R = float(line[1])
-    planet.color = line[2]
+    planet.color = colordict.get(line[2])
     planet.m = float(line[3])
     planet.x = float(line[4])
     planet.y = float(line[5])
