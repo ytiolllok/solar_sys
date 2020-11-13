@@ -30,6 +30,7 @@ def read_space_objects_data_from_file(input_filename):
             elif object_type == "planet":
                 planet = Planet()
                 parse_planet_parameters(line, planet)
+                print(planet.Vy)
                 objects.append(planet)
             else:
                 print("Unknown space object")
