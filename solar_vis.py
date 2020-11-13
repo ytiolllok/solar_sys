@@ -35,7 +35,7 @@ colordict = {'red':  (232, 48, 48),
 def calculate_scale_factor(max_distance):
     """Вычисляет значение глобальной переменной **scale_factor** по данной характерной длине"""
     global scale_factor
-    scale_factor = 0.5 * min(window_height, window_width) / max_distance
+    scale_factor = 0.2 * min(window_height, window_width) / max_distance
     print('Scale factor:', scale_factor)
 
 
